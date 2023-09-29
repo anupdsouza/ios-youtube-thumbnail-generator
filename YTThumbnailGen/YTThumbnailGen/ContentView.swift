@@ -25,93 +25,103 @@ struct ContentView: View {
     private var designView: some View {
         ZStack {
             Color(uiColor: UIColor(red: 233/255.0, green: 50/255.0, blue: 35/255.0, alpha: 1))
-
+            
             CircularDotsView()
                 .opacity(0.5)
-
+            
             elementsView
+                .fixedSize()
         }
     }
     
     private var elementsView: some View {
+        /// fixed size view at 16:9 aspect ratio for YT thumbnails
         HStack {
-            lhsInfoView
-            rhsInfoView
+            lhsInfoView(mainTitle: "SWIFT BIRD LOGO", topTitle: "DRAW", bottomTitle: "IN SWIFTUI")
+                .border(.green, width: 1)
+            rhsInfoView("bitmoji")
+                .border(.green, width: 1)
         }
         .frame(width: 640, height: 360)
-        .border(.yellow, width: 5)
     }
     
-    private var lhsInfoView: some View {
+    @ViewBuilder private func lhsInfoView(mainTitle mainText: String,
+                                          topTitle topText: String,
+                                          bottomTitle bottomText: String) -> some View {
         VStack {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .frame(width: 300, height: 80)
-                .foregroundColor(.white)
-                .overlay {
-                    // MARK: Video Main Title
-                    Text("SWIFT BIRD LOGO")
-                        .fontWeight(.bold)
-                        .font(.largeTitle)
-                        .foregroundColor(.black)
-                        .shadow(color: .black, radius: 1)
-                        .frame(width: 300)
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .frame(width: 200, height: 50)
-                        .overlay {
-                            // MARK: Video Top Text
-                            Text("DRAW")
-                                .fontWeight(.bold)
-                                .font(.title)
-                                .foregroundColor(.yellow)
-                                .background(.black)
-                                .frame(width: 200)
-                                .overlay(
-                                    Image(systemName: "arrow.uturn.up")
-                                        .font(.system(size: 70, weight: .bold, design: .serif))
-                                        .scaleEffect(CGSize(width: 1, height: -1), anchor: .center)
-                                        .foregroundColor(.white)
-                                        .offset(x: 65, y: -50)
-                                    , alignment: .topTrailing)
-                        }
-                        .offset(x: 20, y: -45)
-                    , alignment: .topLeading)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .frame(width: 200, height: 50)
-                        .overlay {
-                            // MARK: Video Bottom Text
-                            Text("IN SWIFTUI")
-                                .fontWeight(.bold)
-                                .font(.title)
-                                .foregroundColor(.yellow)
-                                .frame(width: 200)
-                                .overlay(
-                                    Image(systemName: "arrow.uturn.down")
-                                        .font(.system(size: 70, weight: .bold, design: .serif))
-                                        .scaleEffect(CGSize(width: 1, height: -1), anchor: .center)
-                                        .foregroundColor(.white)
-                                        .offset(x: -65, y: 50)
-                                    , alignment: .bottomLeading)
-                        }
-                        .offset(x: -20, y: 45)
-                    , alignment: .bottomTrailing)
+            // MARK: Main Text
+            titleTextView(mainText)
+                .overlay(alignment: .topLeading, content: {
+                    
+                    // MARK: Top Text
+                    overlayTextView(topText)
+                        .offset(x: 20, y: -35)
+                        .overlay(
+                            overlayArrowView("arrow.uturn.up")
+                                .offset(x: 55, y: -55)
+                            , alignment: .topTrailing)
+                })
+                .overlay(alignment: .bottomTrailing, content: {
+                    
+                    // MARK: Bottom Text
+                    overlayTextView(bottomText)
+                        .offset(x: -20, y: 35)
+                        .overlay(
+                            overlayArrowView("arrow.uturn.down")
+                                .offset(x: -55, y: 55)
+                            , alignment: .bottomLeading)
+                })
         }
+        .frame(width: 300, height: 300)
+        .fixedSize()
         .italic()
         .rotationEffect(.degrees(-10))
-        .padding(.horizontal, 20)
-        .border(.green, width: 5)
     }
     
-    private var rhsInfoView: some View {
+    @ViewBuilder private func titleTextView(_ text: String) -> some View {
+        RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .frame(width: 240, height: 80)
+            .foregroundColor(.white)
+            .overlay {
+                Text(text)
+                    .font(.title2.bold())
+                    .multilineTextAlignment(.center)
+                    .padding(5)
+                    .foregroundColor(.black)
+                    .shadow(color: .black, radius: 1)
+            }
+    }
+    
+    @ViewBuilder private func overlayTextView(_ text: String) -> some View {
+        RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .frame(width: 150, height: 40)
+            .fixedSize()
+            .overlay {
+                Text(text)
+                    .font(.title3.bold())
+                    .multilineTextAlignment(.center)
+                    .padding(5)
+                    .foregroundColor(.yellow)
+            }
+    }
+    
+    @ViewBuilder private func overlayArrowView(_ arrowImageName: String) -> some View {
+        Image(systemName: arrowImageName)
+            .font(.system(size: 40, weight: .bold, design: .serif))
+            .flipped(.vertical, anchor: .center)
+            .foregroundColor(.white)
+            .fixedSize()
+    }
+    
+    @ViewBuilder private func rhsInfoView(_ imageName: String) -> some View {
         VStack {
             // MARK: RHS graphic
-            Image("bitmoji-clear")
+            Image(imageName)
                 .resizable()
-                .frame(width: 300, height: 300)
+                .padding()
         }
-        .padding(.horizontal, 20)
+        .frame(width: 300, height: 300)
+        .fixedSize()
     }
 }
 

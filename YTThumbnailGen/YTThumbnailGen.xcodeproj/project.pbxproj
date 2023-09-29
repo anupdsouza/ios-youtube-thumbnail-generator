@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E4B4F2FE2AC67DC000574C4E /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4F2FD2AC67DC000574C4E /* ImageSaver.swift */; };
 		E4B4F3002AC67E1100574C4E /* UIView+Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4F2FF2AC67E1100574C4E /* UIView+Screenshot.swift */; };
-		E4B4F3032AC67F7200574C4E /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4F3022AC67F7200574C4E /* ScreenshotView.swift */; };
+		E4B4F3052AC68E9200574C4E /* UIView+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4F3042AC68E9200574C4E /* UIView+Flip.swift */; };
 		E4CD7F812AC53518000CC825 /* YTThumbnailGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD7F802AC53518000CC825 /* YTThumbnailGenApp.swift */; };
 		E4CD7F832AC53518000CC825 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD7F822AC53518000CC825 /* ContentView.swift */; };
 		E4CD7F852AC5351C000CC825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CD7F842AC5351C000CC825 /* Assets.xcassets */; };
@@ -20,7 +20,7 @@
 /* Begin PBXFileReference section */
 		E4B4F2FD2AC67DC000574C4E /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		E4B4F2FF2AC67E1100574C4E /* UIView+Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Screenshot.swift"; sourceTree = "<group>"; };
-		E4B4F3022AC67F7200574C4E /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
+		E4B4F3042AC68E9200574C4E /* UIView+Flip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Flip.swift"; sourceTree = "<group>"; };
 		E4CD7F7D2AC53518000CC825 /* YTThumbnailGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YTThumbnailGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CD7F802AC53518000CC825 /* YTThumbnailGenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTThumbnailGenApp.swift; sourceTree = "<group>"; };
 		E4CD7F822AC53518000CC825 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +45,7 @@
 			children = (
 				E4B4F2FD2AC67DC000574C4E /* ImageSaver.swift */,
 				E4B4F2FF2AC67E1100574C4E /* UIView+Screenshot.swift */,
+				E4B4F3042AC68E9200574C4E /* UIView+Flip.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -70,7 +71,6 @@
 			children = (
 				E4CD7F802AC53518000CC825 /* YTThumbnailGenApp.swift */,
 				E4CD7F822AC53518000CC825 /* ContentView.swift */,
-				E4B4F3022AC67F7200574C4E /* ScreenshotView.swift */,
 				E4B4F3012AC67E2F00574C4E /* Helper */,
 				E4CD7F902AC57498000CC825 /* BackgroundPatterns */,
 				E4CD7F842AC5351C000CC825 /* Assets.xcassets */,
@@ -165,11 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B4F3032AC67F7200574C4E /* ScreenshotView.swift in Sources */,
 				E4CD7F832AC53518000CC825 /* ContentView.swift in Sources */,
 				E4CD7F812AC53518000CC825 /* YTThumbnailGenApp.swift in Sources */,
 				E4CD7F922AC574AF000CC825 /* CircularDotsView.swift in Sources */,
 				E4B4F2FE2AC67DC000574C4E /* ImageSaver.swift in Sources */,
+				E4B4F3052AC68E9200574C4E /* UIView+Flip.swift in Sources */,
 				E4B4F3002AC67E1100574C4E /* UIView+Screenshot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
