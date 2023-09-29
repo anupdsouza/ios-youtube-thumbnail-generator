@@ -11,6 +11,7 @@ import SwiftUI
 struct YTThumbnailGenApp: App {
     var body: some Scene {
         WindowGroup {
+//            ScreenshotView()
             ContentView()
         }
     }

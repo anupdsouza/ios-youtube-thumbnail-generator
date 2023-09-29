@@ -8,22 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.displayScale) var displayScale
+    
     var body: some View {
+        ZStack {
+            designView
+                .onTapGesture {
+                    let image = designView.screenshot(displayScale)
+                    let imageSaver = ImageSaver()
+                    imageSaver.writeToPhotoAlbum(image: image)
+                }
+        }
+        .ignoresSafeArea()
+    }
+    
+    private var designView: some View {
         ZStack {
             Color(uiColor: UIColor(red: 233/255.0, green: 50/255.0, blue: 35/255.0, alpha: 1))
 
             CircularDotsView()
                 .opacity(0.5)
-            HStack {
-                lhsInfoView()
-                Spacer()
-                rhsInfoView()
-            }
+
+            elementsView
         }
-        .ignoresSafeArea()
     }
     
-    @ViewBuilder private func lhsInfoView() -> some View {
+    private var elementsView: some View {
+        HStack {
+            lhsInfoView
+            rhsInfoView
+        }
+        .frame(width: 640, height: 360)
+        .border(.yellow, width: 5)
+    }
+    
+    private var lhsInfoView: some View {
         VStack {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .frame(width: 300, height: 80)
@@ -82,9 +101,10 @@ struct ContentView: View {
         .italic()
         .rotationEffect(.degrees(-10))
         .padding(.horizontal, 20)
+        .border(.green, width: 5)
     }
     
-    @ViewBuilder private func rhsInfoView() -> some View {
+    private var rhsInfoView: some View {
         VStack {
             // MARK: RHS graphic
             Image("bitmoji-clear")
@@ -98,5 +118,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }
